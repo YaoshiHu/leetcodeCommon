@@ -8,6 +8,6 @@ public class ListNode {
     @Override
     public String toString() {
         if(next == null) return Integer.toString(val);
-        return Integer.toString(val) + ", " + next.toString();
+        return val + ", " + next.toString();
     }
 }
