@@ -1,5 +1,8 @@
 package common;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ListNode {
     public int val;
     public ListNode next;
@@ -26,7 +29,30 @@ public class ListNode {
 
     @Override
     public String toString() {
+        if(isLoop()) return "There is a loop in this ListNode Structure";
         if(next == null) return Integer.toString(val);
         return val + ", " + next.toString();
+    }
+
+    public boolean isLoop() {
+        Set<ListNode> set = new HashSet<>();
+        ListNode tmp = next;
+        while(tmp != null) {
+            if(set.contains(tmp)) return true;
+            set.add(tmp);
+            tmp = tmp.next;
+        }
+        return false;
+    }
+
+    public int size() {
+        if(isLoop()) return -1;
+        int count = 1;
+        ListNode tmp = next;
+        while(tmp != null) {
+            count++;
+            tmp = tmp.next;
+        }
+        return count;
     }
 }
