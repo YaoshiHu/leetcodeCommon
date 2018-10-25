@@ -30,13 +30,19 @@ public class ListNode {
     @Override
     public String toString() {
         if(isLoop()) return "There is a loop in this ListNode Structure";
-        if(next == null) return Integer.toString(val);
-        return val + ", " + next.toString();
+        StringBuilder sb = new StringBuilder();
+        ListNode tmp = this;
+        while(tmp != null) {
+            sb.append(tmp.val);
+            if(tmp.next != null) sb.append(", ");
+            tmp = tmp.next;
+        }
+        return sb.toString();
     }
 
     public boolean isLoop() {
         Set<ListNode> set = new HashSet<>();
-        ListNode tmp = next;
+        ListNode tmp = this;
         while(tmp != null) {
             if(set.contains(tmp)) return true;
             set.add(tmp);
@@ -47,8 +53,8 @@ public class ListNode {
 
     public int size() {
         if(isLoop()) return -1;
-        int count = 1;
-        ListNode tmp = next;
+        int count = 0;
+        ListNode tmp = this;
         while(tmp != null) {
             count++;
             tmp = tmp.next;
