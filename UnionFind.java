@@ -49,11 +49,15 @@ public class UnionFind<E> {
 
 class UnionFindTest {
     public static void main(String[] args) {
-        UnionFind<String> union = new UnionFind<>();
+        UnionFind<String> union1 = new UnionFind<>();
+        UnionFind<Integer> union2 = new UnionFind<>();
         for(int i = 0; i < 10; i++) {
-            union.merge(Integer.toString(i), Integer.toString(2*i));
+            union1.merge(Integer.toString(i), Integer.toString(2*i));
+            union2.merge(i, 2*i);
         }
-        for(int i = 0; i < 10; i++) System.out.printf("%d: %s\n", i, union.find(Integer.toString(i)));
-        for(int i = 10; i < 20; i+=2) System.out.printf("%d: %s\n", i, union.find(Integer.toString(i)));
+        for(int i = 0; i < 10; i++) System.out.printf("%d: String: %s, Integer: %d\n",
+                i, union1.find(Integer.toString(i)), union2.find(i));
+        for(int i = 10; i < 20; i+=2) System.out.printf("%d: String: %s, Integer: %d\n",
+                i, union1.find(Integer.toString(i)), union2.find(i));
     }
 }
